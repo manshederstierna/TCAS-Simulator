@@ -1,3 +1,3 @@
 package tcas;
 
-public record CollisionPredicition(boolean conflict, double timeToClosestApproach, double closestDistance){}
+public record CollisionPrediction(boolean conflict, double timeToClosestApproach, double closestDistance){}
