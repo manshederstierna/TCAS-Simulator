@@ -4,11 +4,14 @@ import java.util.*;
 import tcas.CollisionPrediction;
 import tcas.CollisionDetector;
 import tcas.TCAS;
+import tcas.AircraftState;
+import tcas.ResolutionPair;
+import tcas.ResolutionType;
 
 public class Simulation{
 	Airspace as;
-	Map<AircraftPair, CollisionPrediction> mp = new HashMap<>();
-	CollisionDetector cs = new CollisionDetector();
+	private final CollisionDetector detector = new CollisionDetector();
+	List<EncounterResult> encounters = new ArrayList<>();
 	int tickrate = 0;
 	
 	public Simulation(Airspace as){
@@ -27,30 +30,50 @@ public class Simulation{
 	public List<Aircraft> getAircraft(){
 		return as.getAircraft();
 	}
-   public void update(double dt) {
-    List<Aircraft> aircraft = as.getAircraft();
-
-    for (Aircraft airplane : aircraft) {
-        airplane.update(dt);
-    }
-
-    mp.clear();
-
-    for (int i = 0; i < aircraft.size(); i++) {
-        for (int j = i + 1; j < aircraft.size(); j++) {
-            Aircraft a = aircraft.get(i);
-            Aircraft b = aircraft.get(j);
-			CollisionPrediction cp = cs.predict(a,b);
-			ResolutionPair = TCAS.resolve(a,b,cp);
-			
-			
-            // predict
-            // interpret
-            // resolve
-        }
-    }
-}
 	
+	public List<EncounterResult> getEncounters() {
+		return encounters;
+	}
 	
+    public void update(double dt) {
+	    encounters.clear();
+		List<Aircraft> aircraft = as.getAircraft();
+
+		for (Aircraft airplane : aircraft) {
+			airplane.update(dt);
+		}
+
+		for (int i = 0; i < aircraft.size(); i++) {
+			for (int j = i + 1; j < aircraft.size(); j++) {
+				Aircraft a = aircraft.get(i);
+				Aircraft b = aircraft.get(j);
+				CollisionPrediction prediction =
+					detector.predict(a, b);
+
+				AircraftState state =
+					TCAS.interpret(prediction);
+					
+				ResolutionPair resolution;
+				
+				if (state == AircraftState.RESOLUTION_ADVISORY) {
+					resolution = TCAS.resolve(a, b, prediction);
+				} else {
+					resolution = new ResolutionPair(
+						ResolutionType.TCAS_MAINTAIN,
+						ResolutionType.TCAS_MAINTAIN
+					);
+				}
+				
+				encounters.add(
+					new EncounterResult(
+						new AircraftPair(a, b),
+						prediction,
+						state,
+						resolution
+					)
+				);
+			}
+		}
+    }
 	
 }
