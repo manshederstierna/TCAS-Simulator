@@ -39,10 +39,6 @@ public class Simulation{
 	    encounters.clear();
 		List<Aircraft> aircraft = as.getAircraft();
 
-		for (Aircraft airplane : aircraft) {
-			airplane.update(dt);
-		}
-
 		for (int i = 0; i < aircraft.size(); i++) {
 			for (int j = i + 1; j < aircraft.size(); j++) {
 				Aircraft a = aircraft.get(i);
@@ -64,6 +60,9 @@ public class Simulation{
 					);
 				}
 				
+				a.applyResolution(resolution.forAircraftA());
+				b.applyResolution(resolution.forAircraftB());
+				
 				encounters.add(
 					new EncounterResult(
 						new AircraftPair(a, b),
@@ -74,6 +73,10 @@ public class Simulation{
 				);
 			}
 		}
+		
+		for (Aircraft airplane : aircraft) {
+			airplane.update(dt);
+		}	
     }
 	
 }
