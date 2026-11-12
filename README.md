@@ -44,8 +44,8 @@ A Resolution Advisory assigns coordinated, opposing vertical commands (e.g. Airc
 
 | Advisory | Trigger |
 |----------|---------|
-| TA       | 60 |
-| RA       | 20 |
+| TA       | 60s |
+| RA       | 20s |
 
 This is a simplified educational simulation and is **not an implementation of certified TCAS II logic**.
 
