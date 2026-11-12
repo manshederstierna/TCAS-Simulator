@@ -11,8 +11,8 @@ import javafx.scene.shape.Box;
 import javafx.stage.Stage;
 import javafx.scene.transform.Rotate;
 import javafx.animation.AnimationTimer;
-
-
+import tcas.AircraftState;
+import javafx.scene.paint.PhongMaterial;
 
 public class App extends Application {
 	Airspace as;
@@ -26,20 +26,20 @@ public class App extends Application {
 
 		as.addAircraft(
 			new Aircraft(
-				"737",
-				new Vector3(50, 50, 50),
+				"A",
+				new Vector3(-200, 0, 0),
 				new Vector3(1, 0, 0),
-				10,
+				20,
 				10
 			)
 		);
 
 		as.addAircraft(
 			new Aircraft(
-				"777",
-				new Vector3(0, 0, 0),
-				new Vector3(0, 0, 1),
-				10,
+				"B",
+				new Vector3(200, 0, 0),
+				new Vector3(-1, 0, 0),
+				20,
 				10
 			)
 		);
@@ -57,6 +57,17 @@ public class App extends Application {
 	private void updateGraphics() {
 		for (AircraftView view : aircraftViews.values()) {
 			view.update();
+			view.setState(AircraftState.NORMAL);
+		}
+
+		for (EncounterResult encounter : sim.getEncounters()) {
+			Aircraft a = encounter.pair().a();
+			Aircraft b = encounter.pair().b();
+
+			AircraftState state = encounter.state();
+
+			aircraftViews.get(a).setState(state);
+			aircraftViews.get(b).setState(state);
 		}
 	}
 

@@ -6,6 +6,9 @@ import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Sphere;
+import tcas.AircraftState;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.PhongMaterial;
 
 public class AircraftView {
     private final Aircraft aircraft;
@@ -36,4 +39,20 @@ public class AircraftView {
     public Aircraft getAircraft() {
         return aircraft;
     }
+	
+	public void setState(AircraftState state) {
+		switch (state) {
+			case NORMAL:
+				material.setDiffuseColor(Color.GRAY);
+				break;
+
+			case TRAFFIC_ADVISORY:
+				material.setDiffuseColor(Color.YELLOW);
+				break;
+
+			case RESOLUTION_ADVISORY:
+				material.setDiffuseColor(Color.RED);
+				break;
+		}
+	}
 }
