@@ -11,8 +11,8 @@ public class Aircraft {
         String callsign,
         Vector3 position,
         Vector3 direction,
-        double speed
-		double length;
+        double speed,
+		double length
     ) {
         this.callsign = callsign;
         this.position = position;

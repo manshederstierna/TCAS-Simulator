@@ -26,6 +26,6 @@ public class CollisionDetector{
 	
 	
 	public Vector3 calculateVelocityVector(Aircraft a){
-		return a.getDir().normalize().scale(a.getSpeed());
+		return a.getDirection().normalize().scale(a.getSpeed());
 	}
 }

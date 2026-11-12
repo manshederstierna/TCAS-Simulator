@@ -1,6 +1,6 @@
 package tcas;
 
-public class Tcas{
+public class TCAS{
 	public static AircraftState interpret(CollisionPrediction prediction){
 		if(!prediction.conflict()){
 			return AircraftState.NORMAL;

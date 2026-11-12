@@ -31,6 +31,7 @@ public class App extends Application {
 				"737",
 				new Vector3(50, 50, 50),
 				new Vector3(1, 0, 0),
+				10,
 				10
 			)
 		);
@@ -40,6 +41,7 @@ public class App extends Application {
 				"777",
 				new Vector3(0, 0, 0),
 				new Vector3(0, 0, 1),
+				10,
 				10
 			)
 		);
