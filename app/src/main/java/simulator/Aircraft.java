@@ -1,5 +1,7 @@
 package simulator;
 
+import TCAS.*;
+
 public class Aircraft {
     private final String callsign;
     private Vector3 position;
@@ -38,7 +40,13 @@ public class Aircraft {
         return speed;
     }
 	public void update(double dt) {
-		position.addScaled(direction, speed * dt);
+		Vector3 horizontalDirection = direction.normalize();
+
+		position.addScaled(horizontalDirection, speed * dt);
+
+		position = position.add(
+			new Vector3(0, verticalSpeed * dt, 0)
+		);
 	}
 	
 	public void applyResolution(ResolutionType resolution) {
