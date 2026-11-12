@@ -89,69 +89,6 @@ The selected resolution remains active until the encounter has passed and suffic
 
 This is a simplified educational simulation and is **not an implementation of certified TCAS II logic**.
 
-## Architecture
-
-The project separates simulation logic from visualization.
-
-```text
-simulator/
-    Aircraft
-    Airspace
-    Simulation
-    Vector3
-    AircraftPair
-    EncounterResult
-
-tcas/
-    CollisionDetector
-    CollisionPrediction
-    TCAS
-    AircraftState
-    ResolutionType
-    ResolutionPair
-
-main/
-    App
-    AircraftView
-```
-
-### Simulation layer
-
-`Aircraft` represents the physical state of an aircraft, while `Simulation` advances the world state and evaluates aircraft encounters.
-
-### Collision detection
-
-`CollisionDetector` performs relative-motion and closest-point-of-approach calculations.
-
-### TCAS layer
-
-`TCAS` interprets collision predictions and determines advisory states and vertical resolution commands.
-
-### Visualization
-
-`AircraftView` renders aircraft and trajectory trails using JavaFX while `App` manages the real-time simulation loop and user-facing visualization.
-
-## Testing
-
-The project includes automated tests covering scenarios such as:
-
-- Head-on encounters
-- Crossing trajectories
-- Aircraft moving away from each other
-- Equal-velocity aircraft
-- Near misses
-- Existing loss of separation
-- Traffic Advisory thresholds
-- Resolution Advisory thresholds
-- Coordinated climb / descend selection
-- End-to-end simulation behavior
-
-Run the tests with:
-
-```bash
-./gradlew test
-```
-
 ## Running
 
 Requirements:
