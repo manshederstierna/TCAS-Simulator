@@ -35,6 +35,10 @@ public class Aircraft {
     public Vector3 getDirection() {
         return direction;
     }
+	
+	public String getCallsign() {
+		return callsign;
+	}
 
     public double getSpeed() {
         return speed;
