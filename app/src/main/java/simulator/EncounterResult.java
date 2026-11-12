@@ -3,8 +3,7 @@ package simulator;
 import tcas.*;
 
 public record EncounterResult(
-    Aircraft a,
-    Aircraft b,
+	AircraftPair pair,
     CollisionPrediction prediction,
     AircraftState state,
     ResolutionPair resolution

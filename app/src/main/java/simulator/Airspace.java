@@ -7,6 +7,12 @@ public class Airspace{
 	
 	public Airspace(){}
 	
+	public Airspace(List<Aircraft> list){
+		for(Aircraft a : list){
+			aircrafts.add(a);
+		}
+	}
+	
 	public void addAircraft(Aircraft ac){
 		aircrafts.add(ac);
 	}

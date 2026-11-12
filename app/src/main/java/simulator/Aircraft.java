@@ -1,6 +1,6 @@
 package simulator;
 
-import TCAS.*;
+import tcas.*;
 
 public class Aircraft {
     private final String callsign;
