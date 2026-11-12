@@ -41,18 +41,18 @@ public class AircraftView {
     }
 	
 	public void setState(AircraftState state) {
-		switch (state) {
-			case NORMAL:
-				material.setDiffuseColor(Color.GRAY);
-				break;
+        switch (state) {
+            case NORMAL:
+                material.setDiffuseColor(Color.GRAY);
+                break;
 
-			case TRAFFIC_ADVISORY:
-				material.setDiffuseColor(Color.YELLOW);
-				break;
+            case TRAFFIC_ADVISORY:
+                material.setDiffuseColor(Color.YELLOW);
+                break;
 
-			case RESOLUTION_ADVISORY:
-				material.setDiffuseColor(Color.RED);
-				break;
-		}
-	}
+            case RESOLUTION_ADVISORY:
+                material.setDiffuseColor(Color.RED);
+                break;
+        }
+    }
 }

@@ -26,20 +26,20 @@ public class App extends Application {
 
 		as.addAircraft(
 			new Aircraft(
-				"A",
+				"737",
 				new Vector3(-200, 0, 0),
 				new Vector3(1, 0, 0),
-				20,
+				10,
 				10
 			)
 		);
 
 		as.addAircraft(
 			new Aircraft(
-				"B",
+				"777",
 				new Vector3(200, 0, 0),
 				new Vector3(-1, 0, 0),
-				20,
+				10,
 				10
 			)
 		);
@@ -55,12 +55,16 @@ public class App extends Application {
 	}
 	
 	private void updateGraphics() {
+
+		// Reset first
 		for (AircraftView view : aircraftViews.values()) {
 			view.update();
 			view.setState(AircraftState.NORMAL);
 		}
 
+		// Apply current TCAS states
 		for (EncounterResult encounter : sim.getEncounters()) {
+
 			Aircraft a = encounter.pair().a();
 			Aircraft b = encounter.pair().b();
 
@@ -101,8 +105,7 @@ public class App extends Application {
 				double dt = (now - previousTime) / 1_000_000_000.0;
 				previousTime = now;
 
-				sim.update(dt);
-
+				sim.update(dt);		
 				updateGraphics();
 			}
 		};

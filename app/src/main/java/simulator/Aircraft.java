@@ -39,10 +39,17 @@ public class Aircraft {
     public double getSpeed() {
         return speed;
     }
+	
+	public double getVerticalSpeed() {
+		return verticalSpeed;
+	}
+	
 	public void update(double dt) {
 		Vector3 horizontalDirection = direction.normalize();
 
-		position.addScaled(horizontalDirection, speed * dt);
+		position = position.add(
+			horizontalDirection.scale(speed * dt)
+		);
 
 		position = position.add(
 			new Vector3(0, verticalSpeed * dt, 0)

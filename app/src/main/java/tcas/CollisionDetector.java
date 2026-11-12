@@ -48,7 +48,14 @@ public class CollisionDetector{
 	}
 	
 	
-	public Vector3 calculateVelocityVector(Aircraft a){
-		return a.getDirection().normalize().scale(a.getSpeed());
+	public Vector3 calculateVelocityVector(Aircraft a) {
+		Vector3 horizontalVelocity =
+			a.getDirection().normalize().scale(a.getSpeed());
+
+		return new Vector3(
+			horizontalVelocity.getX(),
+			a.getVerticalSpeed(),
+			horizontalVelocity.getZ()
+		);
 	}
 }
