@@ -27,9 +27,9 @@ public class App extends Application {
 		as.addAircraft(
 			new Aircraft(
 				"737",
-				new Vector3(-200, 0, 0),
+				new Vector3(-800, 0, 0),
 				new Vector3(1, 0, 0),
-				10,
+				20,
 				10
 			)
 		);
@@ -37,9 +37,9 @@ public class App extends Application {
 		as.addAircraft(
 			new Aircraft(
 				"777",
-				new Vector3(200, 0, 0),
+				new Vector3(800, 0, 0),
 				new Vector3(-1, 0, 0),
-				10,
+				20,
 				10
 			)
 		);
