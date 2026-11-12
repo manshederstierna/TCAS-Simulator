@@ -6,6 +6,7 @@ public class Aircraft {
     private Vector3 direction;
     private double speed;
 	private double length;
+	private double verticalSpeed = 0.0;
 	
     public Aircraft(
         String callsign,
@@ -40,5 +41,19 @@ public class Aircraft {
 		position.addScaled(direction, speed * dt);
 	}
 	
+	public void applyResolution(ResolutionType resolution) {
+		switch (resolution) {
+			case TCAS_CLIMB:
+				verticalSpeed = 5.0;
+				break;
 
+			case TCAS_DESCEND:
+				verticalSpeed = -5.0;
+				break;
+
+			case TCAS_MAINTAIN:
+				verticalSpeed = 0.0;
+				break;
+		}
+	}
 }
